@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: ChildSafe.API
+  version: 1.0
+paths:
+  /v1/detect:
+    post:
+      summary: Detect child usage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetectRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectResponse'
+  /v1/enforce:
+    post:
+      summary: Enforce policy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnforceRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnforceResponse'
+  /v1/telemetry/batch:
+    post:
+      summary: Batch telemetry
+      security:
+        - OAuth2: [admin]
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/feedback:
+    post:
+      summary: Feedback on decision
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/quota:
+    get:
+      summary: Quota status
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    DetectRequest:
+      type: object
+      properties:
+        payload:
+          type: object
+        extra_signals:
+          type: object
+        context:
+          type: object
+    DetectResponse:
+      type: object
+      properties:
+        cls:
+          type: number
+        confidence:
+          type: number
+        reasons:
+          type: array
+          items:
+            type: string
+        threshold:
+          type: number
+    EnforceRequest:
+      allOf:
+        - $ref: '#/components/schemas/DetectRequest'
+        - type: object
+          properties:
+            content_risk:
+              type: object
+    EnforceResponse:
+      allOf:
+        - $ref: '#/components/schemas/DetectResponse'
+        - type: object
+          properties:
+            action:
+              type: string
+            feature_flags:
+              type: object
+            limits:
+              type: object
+            policy_version:
+              type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /token
+          scopes: {}
+security:
+  - OAuth2: []

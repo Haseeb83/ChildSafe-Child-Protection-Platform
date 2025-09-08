@@ -1,0 +1,17 @@
+numpy
+pandas
+scikit-learn
+lightgbm
+torch
+imbalanced-learn
+joblib
+matplotlib
+flwr  # For federated learning
+fastapi # For API testing
+uvicorn
+pydantic
+slowapi  # Rate limiting
+pyjwt # JWT for OAuth2
+python-dotenv # Env secrets
+pytest
+python-multipart

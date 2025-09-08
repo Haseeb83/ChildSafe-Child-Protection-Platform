@@ -1,0 +1,117 @@
+{
+  "info": {
+    "name": "ChildSafe",
+    "_postman_id": "childsafe-2025-09-1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Detect",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{jwt_token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"payload\":{\"iki_mean\":180.0,\"iki_std\":95.0,\"typos_per_100\":9.0,\"backspace_rate\":0.1,\"avg_word_len\":3.8,\"short_word_ratio\":0.6,\"swipe_speed_mean\":1200.0,\"swipe_speed_std\":550.0,\"press_ms_mean\":140.0,\"press_ms_std\":60.0,\"path_erraticness\":0.65,\"emoji_ratio\":0.2,\"punct_ratio\":0.1,\"vocab_simplicity\":0.78,\"readability_fk\":2.5,\"rtf_ms\":900.0,\"dwell_std_ms\":420.0},\"extra_signals\":{\"voice_events\":[],\"video_events\":[]},\"context\":{\"platform\":\"web\"}}"
+        },
+        "url": {
+          "raw": "https://api.childsafe.dev/v1/detect",
+          "protocol": "https",
+          "host": ["api", "childsafe", "dev"],
+          "path": ["v1", "detect"]
+        }
+      }
+    },
+    {
+      "name": "Enforce",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{jwt_token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"payload\":{\"iki_mean\":180.0,\"iki_std\":95.0,\"typos_per_100\":9.0,\"backspace_rate\":0.1,\"avg_word_len\":3.8,\"short_word_ratio\":0.6,\"swipe_speed_mean\":1200.0,\"swipe_speed_std\":550.0,\"press_ms_mean\":140.0,\"press_ms_std\":60.0,\"path_erraticness\":0.65,\"emoji_ratio\":0.2,\"punct_ratio\":0.1,\"vocab_simplicity\":0.78,\"readability_fk\":2.5,\"rtf_ms\":900.0,\"dwell_std_ms\":420.0},\"content_risk\":{\"text\":\"sample text\",\"image_url\":\"sample.jpg\",\"url\":\"sample.com\"},\"context\":{\"platform\":\"web\"}}"
+        },
+        "url": {
+          "raw": "https://api.childsafe.dev/v1/enforce",
+          "protocol": "https",
+          "host": ["api", "childsafe", "dev"],
+          "path": ["v1", "enforce"]
+        }
+      }
+    },
+    {
+      "name": "Telemetry Batch",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{jwt_token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"telemetry\": [{\"event\": \"sample\"}]}"
+        },
+        "url": {
+          "raw": "https://api.childsafe.dev/v1/telemetry/batch",
+          "protocol": "https",
+          "host": ["api", "childsafe", "dev"],
+          "path": ["v1", "telemetry", "batch"]
+        }
+      }
+    },
+    {
+      "name": "Feedback",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Authorization", "value": "Bearer {{jwt_token}}"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"feedback\": \"misclassification\"}"
+        },
+        "url": {
+          "raw": "https://api.childsafe.dev/v1/feedback",
+          "protocol": "https",
+          "host": ["api", "childsafe", "dev"],
+          "path": ["v1", "feedback"]
+        }
+      }
+    },
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.childsafe.dev/v1/health",
+          "protocol": "https",
+          "host": ["api", "childsafe", "dev"],
+          "path": ["v1", "health"]
+        }
+      }
+    },
+    {
+      "name": "Quota",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{jwt_token}}"}
+        ],
+        "url": {
+          "raw": "https://api.childsafe.dev/v1/quota",
+          "protocol": "https",
+          "host": ["api", "childsafe", "dev"],
+          "path": ["v1", "quota"]
+        }
+      }
+    }
+  ]
+}

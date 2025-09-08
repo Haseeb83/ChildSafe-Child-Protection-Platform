@@ -1,0 +1,29 @@
+{
+    "version": "rules-2025.08.1",
+    "rules": [
+      {
+        "name": "restrict_chat_block_iap",
+        "when": {"all": [{"fact": "cls", "operator": ">=", "value": 0.50}]},
+        "then": [{"type": "set", "params": {"restrict_chat": true, "block_iap": true}}]
+      },
+      {
+        "name": "limit_playtime",
+        "when": {"all": [{"fact": "cls", "operator": ">=", "value": 0.60}]},
+        "then": [{"type": "set", "params": {"limit_playtime_min": 20}}]
+      },
+      {
+        "name": "default_child_policy",
+        "when": {"all": [{"fact": "cls", "operator": ">=", "value": 0.50}]},
+        "then": [{
+          "type": "set",
+          "params": {
+            "safe_recommendations": true,
+            "blur_adult_images": true,
+            "disable_age_inappropriate_modes": ["PVP_MATURE", "NSFW_CHAT"],
+            "ui_mode": "kid",
+            "report_button_visible": true
+          }
+        }]
+      }
+    ]
+  }

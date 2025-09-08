@@ -1,0 +1,20 @@
+version: rules-2025.09.1
+bedtime_window:
+  start: 21:00
+  end: 06:00
+  action: soft_lock
+geofence:
+  locations: ["school"]
+  action: hard_lock
+url_categories:
+  block: ["adult", "gambling"]
+  action: block
+app_categories:
+  block: ["social", "dating"]
+  action: hard_lock
+age_band:
+  under_13: 
+    limits: {playtime_min: 30}
+prior_violations:
+  threshold: 3
+  action: notify_guardian

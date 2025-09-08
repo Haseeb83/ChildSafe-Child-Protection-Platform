@@ -1,0 +1,7 @@
+FEATURE_COLUMNS = [
+    "iki_mean", "iki_std", "typos_per_100", "backspace_rate", "avg_word_len", "short_word_ratio",
+    "swipe_speed_mean", "swipe_speed_std", "press_ms_mean", "press_ms_std", "path_erraticness",
+    "emoji_ratio", "punct_ratio", "vocab_simplicity", "readability_fk",
+    "rtf_ms", "dwell_std_ms"
+]
+TARGET = "is_child"
